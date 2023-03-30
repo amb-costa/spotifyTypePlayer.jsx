@@ -1,12 +1,51 @@
+#app {
+    background-color: black;
+    position: absolute;
+    width:100%;
+    height: 100%;
+}
 
-/* 
+#wholePlayer {
+    position: absolute;
+    width: 100%;
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+#nav {
+    position:relative;
+    background-color: rgb(84, 84, 84);
+    height: 25px;
+}
 
-*/
+#songsList {
+    position:relative;
+    background-color: rgb(62, 62, 62);
+    height: 80%;
+    width: 100%;
+    margin:auto;
+}
+
+#actualSong {
+    font-size: 20px;
+    height: 40px;
+    width:100%;
+    padding: 5px 25px;
+    color: blanchedalmond;
+    text-align: left;
+}
+
+
+.footer{
+    position:fixed;
+    height: 10%;
+    justify-content: center;
+    background-color: dimgray;
+}
+
+.col-1 {
+    background-color: aliceblue;
+    color:white;
+    width: 50px;
+    height:50px;
+    padding:5px;
+    margin:10px;
+}
