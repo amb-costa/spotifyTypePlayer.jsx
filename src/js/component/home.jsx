@@ -46,6 +46,8 @@ const Home = () => {
   //Play effect: song is played or paused, called when audioTag or selected song changes
   useEffect(()=>{Fetching()},[]);
   useEffect(()=>{(songPlay)? Music.current.play(): Music.current.pause()}, [songSelected, songPlay]);
+  
+  //KEEP IN MIND!: last 3 songs generate a 404 error, buttons are still functional
 
   return (
     <>
