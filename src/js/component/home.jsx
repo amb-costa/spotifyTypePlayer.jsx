@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Nav from "./nav.jsx"
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 const Home = () => {
   //songArray: array, contains set of data for each songs: id, category, name, url according to future songs
+  //songSelected: index, points to song being modified/played
+  //songPlay: boolean, false if song is paused
+  //Music: reference to link player structure and functionality
   const [songArray, setSongArray] = useState([{id:"",category:"",name:"",url:""}]);
+  const [songSelected, setSongSelected] = useState(0);
+  const [songPlay, setSongPlay] = useState(false);
+  const Music = useRef();
 
   //according to ./apis/sound/songs, there's 20 songs
   //however, there's 6 songs with cartoon category
@@ -40,18 +43,21 @@ const Home = () => {
   useEffect(()=>{Fetching()},[]);
 
   return (
-    <div id="wholePlayer">
+    <>
       <Nav />
-      <ol className="row" id="songLists">
-         {songArray.map((songName,index) => <>
-         <li key={index} className="col-12" id="actualSong">{songName.name}</li></>)}
-      </ol>
-      <div className="row footer">
+      <div className="row" id="songLists">
+        {songArray.map((songName,index) => 
+          <div className="col-12" id="actualSong" key={index}>
+            <span>{index+1}</span>
+            <span>{songName.name}</span>
+          </div>)}
+      </div>
+      <div className="row" id="footer">
         <div className="col-1" type="button" id="back"></div>
         <div className="col-1" type="button" id="play"></div>
         <div className="col-1" type="button" id="forward"></div>
       </div>
-    </div>
+    </>
   );
 };
 

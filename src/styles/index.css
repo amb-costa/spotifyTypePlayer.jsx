@@ -1,51 +1,50 @@
-#app {
+body {
     background-color: black;
-    position: absolute;
-    width:100%;
+}
+
+#app {
+    position:absolute;
+    width: 100%;
     height: 100%;
 }
 
-#wholePlayer {
-    position: absolute;
+.row {
     width: 100%;
+    margin: 0;
 }
 
-#nav {
-    position:relative;
-    background-color: rgb(84, 84, 84);
-    height: 25px;
-}
-
-#songsList {
-    position:relative;
-    background-color: rgb(62, 62, 62);
-    height: 80%;
-    width: 100%;
-    margin:auto;
+span {
+    margin:0 15px;
+    vertical-align: middle;
 }
 
 #actualSong {
     font-size: 20px;
     height: 40px;
-    width:100%;
-    padding: 5px 25px;
     color: blanchedalmond;
-    text-align: left;
+    border: 1px solid rgba(255, 235, 205, 0.34);
 }
 
+#actualSong:hover {
+    background-color: rgba(105, 105, 105, 0.422);
+}
 
-.footer{
+#actualSong:active {
+    background-color: rgba(193, 192, 192, 0.375);
+    color:rgb(127, 255, 193);
+}
+
+#footer{
     position:fixed;
-    height: 10%;
+    bottom:0;
     justify-content: center;
     background-color: dimgray;
+    height: 60px;
 }
 
 .col-1 {
     background-color: aliceblue;
     color:white;
-    width: 50px;
-    height:50px;
-    padding:5px;
-    margin:10px;
+    padding:10px;
+    margin: 5px;
 }
