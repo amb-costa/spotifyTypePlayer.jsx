@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Nav from "./nav.jsx"
+import ButtonBar from "./buttonbar.jsx"
 
 //create your first component
 const Home = () => {
@@ -7,10 +8,12 @@ const Home = () => {
   //songSelected: index, points to song being modified/played
   //songPlay: boolean, false if song is paused
   //Music: reference to link player structure and functionality
+  //initURL: main url, specific url will be added on audio tag
   const [songArray, setSongArray] = useState([{id:"",category:"",name:"",url:""}]);
   const [songSelected, setSongSelected] = useState(0);
   const [songPlay, setSongPlay] = useState(false);
   const Music = useRef();
+  const initURL = "https://assets.breatheco.de/apis/sound/"
 
   //according to ./apis/sound/songs, there's 20 songs
   //however, there's 6 songs with cartoon category
@@ -39,24 +42,23 @@ const Home = () => {
           {id: 15, category: data[15].category, name: data[15].name, url: data[15].url}
         ]))
   };
-
+  //Fetching effect: songs stay in container array
+  //Play effect: song is played or paused, called when audioTag or selected song changes
   useEffect(()=>{Fetching()},[]);
+  useEffect(()=>{(songPlay)? Music.current.play(): Music.current.pause()}, [songSelected, songPlay]);
 
   return (
     <>
       <Nav />
-      <div className="row" id="songLists">
+      <div className="w-100">
         {songArray.map((songName,index) => 
-          <div className="col-12" id="actualSong" key={index}>
+          <div className={songName.id==songSelected? "selected":""} id="actualSong" key={index} onClick={()=>{setSongSelected(index),setSongPlay(true)}}>
             <span>{index+1}</span>
             <span>{songName.name}</span>
           </div>)}
       </div>
-      <div className="row" id="footer">
-        <div className="col-1" type="button" id="back"></div>
-        <div className="col-1" type="button" id="play"></div>
-        <div className="col-1" type="button" id="forward"></div>
-      </div>
+      <audio src={initURL+songArray[songSelected].url} ref={Music} /> 
+      <ButtonBar audioRef={Music} songPlaying={songPlay} setSongPlaying={setSongPlay} indexSelected={songSelected} setIndexSelected={setSongSelected} songList={songArray}/>
     </>
   );
 };
